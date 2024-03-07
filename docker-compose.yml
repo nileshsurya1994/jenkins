@@ -1,0 +1,6 @@
+version: '3'  # Use single quotes for version and specify a valid version number
+services:
+  web:
+    image: diabloexodia/todoapp:latest
+    ports:
+      - "5000:5000"  # The port mapping should not have quotes around the numbers
