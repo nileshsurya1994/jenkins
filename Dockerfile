@@ -17,4 +17,3 @@ COPY . /app
 ENTRYPOINT [ "python" ]
 
 CMD ["todoapp.py"]
-In our pipeline we write the fo
