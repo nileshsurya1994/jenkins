@@ -13,20 +13,10 @@ pipeline {
                 sh "docker build -t todoapp ."
             }
         }
-        stage("push-to-docker") {
-            steps {
-                echo "Pushing image to Docker Hub"
-                withCredentials([usernamePassword(credentialsId: "dockerhub", passwordVariable: "dockerhubpass", usernameVariable: "dockerhubuser")]) {
-                    sh "docker tag todoapp ${env.dockerhubuser}/todoapp:latest"
-                    sh "echo ${env.dockerhubpass} | docker login -u ${env.dockerhubuser} --password-stdin"
-                    sh "docker push ${env.dockerhubuser}/todoapp:latest"
-                }
-            }
-        }
         stage("deploy") {
             steps {
                 echo "Deploying the container"
-                sh "docker run -d -p 5000:5000 ${env.dockerhubuser}/todoapp:latest"
+                sh "docker run -d -p 5000:5000 todoapp:latest"
             }
         }
     }
