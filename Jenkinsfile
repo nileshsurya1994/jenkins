@@ -16,7 +16,7 @@ pipeline {
         stage("deploy") {
             steps {
                 echo "Deploying the updated container"
-                sh "docker run -d -p 9000:5000 --name todoapp todoapp:latest"
+                sh "docker run -d -p 9000:5000 --name todoapp1 todoapp:latest"
             }
         }
     }
