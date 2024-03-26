@@ -16,11 +16,11 @@ pipeline {
         stage("deploy") {
             steps {
                echo "Stopping existing container"
-               sh "docker stop \$(docker ps -qf 'name=serene_lederberg')"
+               sh "docker stop serene_lederberg"
                echo "Removing existing container"
-               sh "docker rm \$(docker ps -aqf 'name=serene_lederberg')"
+               sh "docker rm serene_lederberg"
                echo "Deploying the updated container"
-               sh "docker run -d -p 5000:5000 --name todoapp todoapp:latest"
+               sh "docker run -d -p 5000:5000 --name serene_lederberg todoapp:latest"
             }
         }
     }
