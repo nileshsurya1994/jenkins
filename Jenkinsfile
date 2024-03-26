@@ -16,13 +16,22 @@ pipeline {
         stage("deploy") {
             steps {
                echo "Stopping existing container"
-               sh "docker stop serene_lederberg"
-               echo "Removing existing container"
-               sh "docker rm serene_lederberg"
-               echo "Deploying the updated container"
-               sh "docker run -d -p 5000:5000 --name serene_lederberg todoapp:latest"
+        script {
+            CONTAINER_ID = sh(script: 'docker ps -qf "name=serene_lederberg"', returnStdout: true).trim()
+            if (CONTAINER_ID) {
+                CONTAINER_NAME = sh(script: 'docker inspect --format "{{.Name}}" $CONTAINER_ID', returnStdout: true).trim()
+                sh "docker stop $CONTAINER_NAME"
+                echo "Removed existing container: $CONTAINER_NAME"
+            } else {
+                echo "No existing container found"
             }
         }
+
+        echo "Deploying the updated container"
+        sh "docker run -d -p 5000:5000 --name serene_lederberg todoapp:latest"
+            }
+        }
+    }
     post {
         success {
             echo "Pipeline succeeded!"
