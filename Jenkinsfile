@@ -23,7 +23,6 @@ pipeline {
                sh "docker run -d -p 5000:5000 --name serene_lederberg todoapp:latest"
             }
         }
-    }
     post {
         success {
             echo "Pipeline succeeded!"
