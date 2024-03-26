@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage("clone") {
             steps {
-                echo "Cloning Stage"
+                echo "Cloning Stage..."
                 git url: "https://github.com/nileshsurya1994/jenkins.git", branch: "main"
             }
         }
