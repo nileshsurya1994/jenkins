@@ -16,7 +16,7 @@ pipeline {
         stage("deploy") {
             steps {
                 echo "Deploying the container"
-                sh "docker kill todoapp:latest"
+                sh "docker kill *"
                 sh "docker run -d -p 5000:5000 todoapp:latest"
             }
         }
