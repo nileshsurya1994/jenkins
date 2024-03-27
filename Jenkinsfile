@@ -8,7 +8,7 @@ pipeline {
             }
         }
         stage("remove existing container") {
-            step {
+            steps {
                 echo "Removing Container..."
                 sh "docker stop todoapp"
                 sh "docker rm todoapp"
