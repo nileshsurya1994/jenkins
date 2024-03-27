@@ -7,6 +7,13 @@ pipeline {
                 git url: "https://github.com/nileshsurya1994/jenkins.git", branch: "main"
             }
         }
+        stage("remove existing container") {
+            step {
+                echo "Removing Container..."
+                sh "docker stop todoapp"
+                sh "docker rm todoapp"
+            }
+        }
         stage("build") {
             steps {
                 echo "Building image Stage..."
