@@ -22,13 +22,6 @@ pipeline {
                 sh "docker build -t todoapp ."
             }
         }
-        stage("remove existing container") {
-            steps {
-                echo "Removing Container..."
-                sh "docker stop todoapp"
-                sh "docker rm todoapp"
-            }
-        }
         stage("deploy") {
             steps {
                 echo "Deploying the updated container"
