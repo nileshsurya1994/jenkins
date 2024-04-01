@@ -8,7 +8,6 @@ pipeline {
                 sh "sudo apt install -y docker.io"
                 sh "sudo systemctl start docker"
                 sh "sudo systemctl enable docker"
-                sh "sudo usermod -aG docker jenkins"
             }
         }
         stage("clone") {
