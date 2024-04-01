@@ -1,15 +1,6 @@
 pipeline {
     agent {label 'slave-1'}
     stages {
-        stage("Install Docker") {
-            steps {
-                echo "Installing Docker..."
-                sh "sudo apt update"
-                sh "sudo apt install -y docker.io"
-                sh "sudo systemctl start docker"
-                sh "sudo systemctl enable docker"
-            }
-        }
         stage("clone") {
             steps {
                 echo "Cloning Stage..."
